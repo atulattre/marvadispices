@@ -1,0 +1,158 @@
+/* Keep content from sliding under the fixed navbar */
+/* Keep content from sliding under the fixed navbar */
+body {
+  padding-top: 70px; /* Adjust based on navbar height */
+  background-color: #F5F5F5;
+}
+
+/* Navbar styling */
+.custom-navbar {
+  background: rgba(0,0,0,0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  height: 70px;
+  padding: .3rem 0;
+  z-index: 1000;
+}
+
+/* Brand container alignment */
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  margin-top: 2px;
+}
+
+/* Logo box: thick border, rounded, and responsive */
+.logo-box {
+  margin-top: 0.5px;
+  padding: clamp(3px, 1vw, 3px);       /* scales padding with screen size */
+  border: clamp(3px, 0.9vw, 3px) solid black;  /* thick but responsive border */
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.1);
+  display: inline-block;
+}
+
+/* Make the logo image responsive inside the box */
+.logo-box img {
+  display: block;
+  height: clamp(30px, 5.2vw, 55px);  /* scales up/down with screen */
+  width: auto;
+}
+
+/* Nav link styles */
+.navbar-nav .nav-link {
+  color: black !important;
+  font-weight: 500;
+}
+.navbar-nav .nav-link.active {
+  color: orange !important;
+  font-weight: 700;
+}
+
+/* Small devices adjustments */
+@media (max-width: 576px) {
+  .custom-navbar {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+  .logo-box {
+    padding: clamp(4px, 1vw, 6px);
+    border-width: clamp(4px, 0.7vw, 5px);
+  }
+}
+
+
+/* ===========================
+   PAGE HEADER
+   =========================== */
+
+.product-hero { padding-top: 48px; padding-bottom: 24px; }
+.product-hero h1 { font-size: clamp(28px, 4vw, 44px); letter-spacing: .3px; margin-bottom: .25rem; }
+.product-hero p  { max-width: 760px; margin: 0 auto 18px; color: #6c757d; }
+
+/* Filter bar */
+.filter-bar { margin-top: 10px; }
+.input-group .form-control, .form-select { border-radius: 12px; }
+.input-group-text { border-radius: 12px 0 0 12px; }
+
+/* ===========================
+   PRODUCT GRID — Image + Name only
+   =========================== */
+
+.product-item {
+  text-align: center;
+  display: inline-block;
+  width: 100%;
+}
+
+/* Responsive image with black border */
+.product-item img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  border: 2px solid black;      /* Black border */
+  border-radius: 8px;           /* Slight rounded corners */
+  box-sizing: border-box;
+}
+
+/* (Unused fallback) Title style — keep if you sometimes use .product-title */
+.product-title {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 8px 16px;
+  border: 2px solid red;
+  border-radius: 50px;
+  font-weight: bold;
+  font-size: 1rem;
+  white-space: nowrap;
+  background-color: white;
+}
+
+/* Responsive product title pill (pink bg + red border by default) */
+.product-name{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  max-width: 100%;
+  padding: 8px 16px;
+  margin-top: 8px;
+
+  border: 2px solid red;      /* red outline (you can keep red) */
+  border-radius: 999px;       /* pill */
+  background-color: #ffe6ea;  /* light pink */
+
+  font-weight: 800;
+  font-size: clamp(.9rem, 2.2vw, 1.05rem);
+  line-height: 1.2;
+  color: #111;
+  text-align: center;
+
+  white-space: normal;        /* allow wrap */
+  word-break: break-word;
+  overflow-wrap: anywhere;
+  box-sizing: border-box;
+}
+
+/* If you prefer black border instead of red for the pill, leave this enabled */
+.product-name { border-color: black; }
+
+/* Optional tighter mobile spacing */
+@media (max-width: 576px){
+  .product-name { padding: 7px 14px; }
+}
+
+.product-price{
+  font-size: .95rem;
+  font-weight: 700;
+  color: #198754;          /* Bootstrap success green */
+}
+
+/* ===========================
+   PAGINATION
+   =========================== */
+.pagination .page-link { border-radius: 10px; }
+.pagination .page-item.active .page-link { background:#fc6900; border-color:#fc6900; }
+.pagination .page-link:focus { box-shadow: 0 0 0 .2rem rgba(252,105,0,.25); }

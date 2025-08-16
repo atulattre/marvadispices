@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Shuddh Maarwaadi — Products</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/product.css">
+</head>
+<body>
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg fixed-top custom-navbar px-5">
+    <a class="navbar-brand" href="index.html">
+      <div class="logo-box">
+        <img src="media/logo.png" alt="Logo">
+      </div>
+    </a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link active" href="product.html">Products</a></li>
+        <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+        <li class="nav-item"><a class="nav-link" href="contact.html">Contact Us</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- PAGE HEADER -->
+  <header class="container text-center product-hero">
+    <h1 class="fw-bold">Our Products</h1>
+    <p class="text-muted">Explore our complete collection of premium spices, blends, herbs, teas, and oils.</p>
+
+    <!-- FILTER BAR -->
+    <div class="row g-3 align-items-center justify-content-center filter-bar">
+      <div class="col-12 col-md-6">
+        <div class="input-group">
+          <span class="input-group-text bg-white"><i class="bi bi-search"></i></span>
+          <input id="searchInput" type="text" class="form-control" placeholder="Search products...">
+        </div>
+      </div>
+      <div class="col-12 col-md-3">
+        <select id="categorySelect" class="form-select">
+          <option value="all" selected>All Categories</option>
+          <option value="whole">Whole Spices</option>
+          <option value="powder">Powders & Salts</option>
+          <option value="blend">Masala Blends</option>
+          <option value="herb">Herbs</option>
+          <option value="tea">Tea</option>
+          <option value="oil">Oils</option>
+        </select>
+      </div>
+    </div>
+  </header>
+
+  <!-- PRODUCT GRID -->
+  <main class="container pb-5">
+    <div id="productGrid" class="row g-4"></div>
+
+    <!-- PAGINATION -->
+    <nav aria-label="Products pagination">
+      <ul id="pagination" class="pagination justify-content-center mt-4 mb-0"></ul>
+    </nav>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    // ====== DATA ======
+    const PRODUCTS = [
+      {name:'Deluxe Mirchi Powder', cat:'powder', img:'media/products/mirchi-deluxe.png'},
+      {name:'Pure Kashmiri Mirchi Powder', cat:'powder',  img:'media/products/mirchi-super.png'},
+      {name:'Ekdum Tikha Mirchi Powder', cat:'powder',  img:'media/products/mirchi-tikha.png'},
+      {name:'Super Deluxe Mirchi Powder', cat:'powder',  img:'media/products/mirchi-kashmiri.png'},
+
+      {name:'Turmeric Deluxe Powder', cat:'powder',  img:'media/products/turmeric-deluxe.png'},
+      {name:'Pure Salem Turmeric Powder', cat:'powder',  img:'media/products/turmeric-salem.png'},
+
+      {name:'Dhaniya Super Powder', cat:'powder',  img:'media/products/dhaniya-super.png'},
+      {name:'Dhaniya Deluxe Powder', cat:'powder',  img:'media/products/dhaniya-deluxe.png'},
+
+      {name:'Jeera Powder', cat:'powder',  img:'media/products/jeera-powder.png'},
+      {name:'Black Pepper Powder', cat:'powder',  img:'media/products/black-pepper.png'},
+      {name:'Dry Ginger Powder', cat:'powder',  img:'media/products/dry-ginger.png'},
+      {name:'Jeera Dhaniya Powder', cat:'powder',  img:'media/products/jeera-dhaniya.png'},
+      {name:'Garlic Onion Powder', cat:'powder',  img:'media/products/garlic-onion.png'},
+      {name:'Methi Powder', cat:'powder',  img:'media/products/methi-powder.png'},
+      {name:'Pudina Powder', cat:'powder',  img:'media/products/pudina-powder.png'},
+      {name:'Fennel Powder', cat:'powder',  img:'media/products/fennel-powder.png'},
+      {name:'Black Salt Powder', cat:'powder',  img:'media/products/black-salt.png'},
+      {name:'Pink Salt Powder', cat:'powder',  img:'media/products/pink-salt.png'},
+      {name:'Hing (Asafoetida)', cat:'powder',  img:'media/products/hing.png'},
+
+      {name:'Chai Masala', cat:'blend',  img:'media/products/chai-masala.png'},
+      {name:'Pav Bhaji Masala', cat:'blend',  img:'media/products/pav-bhaji.png'},
+      {name:'All-in-One Masala', cat:'blend',  img:'media/products/all-in-one.png'},
+      {name:'Kitchen Queen Masala', cat:'blend',  img:'media/products/kitchen-queen.png'},
+      {name:'Buttermilk Masala', cat:'blend',  img:'media/products/buttermilk.png'},
+      {name:'Chaat Masala', cat:'blend',  img:'media/products/chaat.png'},
+      {name:'Amchur Powder', cat:'powder',  img:'media/products/amchur.png'},
+      {name:'Garam Masala', cat:'blend',  img:'media/products/garam-masala.png'},
+      {name:'Sambhar Masala', cat:'blend', img:'media/products/sambhar.png'},
+      {name:'Chicken Masala', cat:'blend',  img:'media/products/chicken.png'},
+      {name:'Mutton Masala', cat:'blend',  img:'media/products/mutton.png'},
+      {name:'Biryani Masala', cat:'blend',  img:'media/products/biryani.png'},
+
+      {name:'Kasuri/Kasturi Methi', cat:'herb',  img:'media/products/kasuri-methi.png'},
+      {name:'Premium Tea', cat:'tea',  img:'media/products/tea.png'},
+      {name:'Mustard Oil (Kachi Ghani)', cat:'oil', img:'media/products/mustard-oil.png'},
+
+      {name:'Mustard (Rai)', cat:'whole', img:'media/products/mustard.png'},
+      {name:'Saunf (Fennel)', cat:'whole',  img:'media/products/saunf.png'},
+      {name:'Jeera (Cumin)', cat:'whole',  img:'media/products/jeera.png'},
+      {name:' Methi Dana + Ajwain', cat:'whole', img:'media/products/methi-ajwain-combo.png'}
+    ];
+
+    // ====== RENDER + FILTER + PAGINATION ======
+    const grid = document.getElementById('productGrid');
+    const pagination = document.getElementById('pagination');
+    const searchInput = document.getElementById('searchInput');
+    const categorySelect = document.getElementById('categorySelect');
+
+    const PER_PAGE = 12;
+    let currentPage = 1;
+
+    function itemTemplate(p){
+      const price = p.price ? `₹${p.price}` : '';
+      const img = p.img || 'media/products/placeholder.jpg';
+      return `
+        <div class="col-6 col-md-4 col-lg-3">
+          <figure class="product-item">
+            <img src="${img}" alt="${p.name}" loading="lazy">
+            <figcaption class="product-name">
+              ${p.name}
+              ${price ? `<span class="product-price d-block">${price}</span>` : ''}
+            </figcaption>
+          </figure>
+        </div>`;
+    }
+
+    function getFiltered(){
+      const q = (searchInput.value || '').toLowerCase();
+      const cat = categorySelect.value;
+      return PRODUCTS.filter(p => {
+        const matchesText = p.name.toLowerCase().includes(q);
+        const matchesCat  = (cat === 'all') || p.cat === cat;
+        return matchesText && matchesCat;
+      });
+    }
+
+    function render(){
+      const data = getFiltered();
+      const totalPages = Math.max(1, Math.ceil(data.length / PER_PAGE));
+      if (currentPage > totalPages) currentPage = totalPages;
+
+      const start = (currentPage - 1) * PER_PAGE;
+      const pageItems = data.slice(start, start + PER_PAGE);
+
+      grid.innerHTML = pageItems.map(itemTemplate).join('');
+
+      // pagination
+      let html = '';
+      const prevDisabled = (currentPage === 1) ? ' disabled' : '';
+      const nextDisabled = (currentPage === totalPages) ? ' disabled' : '';
+      html += `<li class="page-item${prevDisabled}">
+                <a class="page-link" href="#" data-page="${currentPage-1}">Previous</a>
+              </li>`;
+      const range = 2;
+      const startPage = Math.max(1, currentPage - range);
+      const endPage = Math.min(totalPages, currentPage + range);
+      for (let i = startPage; i <= endPage; i++){
+        html += `<li class="page-item ${i===currentPage?'active':''}">
+                   <a class="page-link" href="#" data-page="${i}">${i}</a>
+                 </li>`;
+      }
+      html += `<li class="page-item${nextDisabled}">
+                <a class="page-link" href="#" data-page="${currentPage+1}">Next</a>
+              </li>`;
+      pagination.innerHTML = html;
+
+      pagination.querySelectorAll('.page-link').forEach(a => {
+        a.addEventListener('click', (e) => {
+          e.preventDefault();
+          const p = parseInt(a.dataset.page, 10);
+          if (!isNaN(p)) {
+            currentPage = Math.max(1, p);
+            render();
+          }
+        });
+      });
+    }
+
+    searchInput.addEventListener('input', () => { currentPage = 1; render(); });
+    categorySelect.addEventListener('change', () => { currentPage = 1; render(); });
+
+    render();
+  </script>
+</body>
+</html>

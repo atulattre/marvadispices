@@ -1,0 +1,62 @@
+/* Keep content from sliding under the fixed navbar */
+/* Keep content from sliding under the fixed navbar */
+body {
+  padding-top: 70px; /* Adjust based on navbar height */
+  background-color: #F5F5F5;
+}
+
+/* Navbar styling */
+.custom-navbar {
+  background: rgba(0,0,0,0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  height: 70px;
+  padding: .3rem 0;
+  z-index: 1000;
+}
+
+/* Brand container alignment */
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  margin-top: 2px;
+}
+
+/* Logo box: thick border, rounded, and responsive */
+.logo-box {
+  margin-top: 0.5px;
+  padding: clamp(3px, 1vw, 3px);       /* scales padding with screen size */
+  border: clamp(3px, 0.9vw, 3px) solid black;  /* thick but responsive border */
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.1);
+  display: inline-block;
+}
+
+/* Make the logo image responsive inside the box */
+.logo-box img {
+  display: block;
+  height: clamp(30px, 5.2vw, 55px);  /* scales up/down with screen */
+  width: auto;
+}
+
+/* Nav link styles */
+.navbar-nav .nav-link {
+  color: black !important;
+  font-weight: 500;
+}
+.navbar-nav .nav-link.active {
+  color: orange !important;
+  font-weight: 700;
+}
+
+/* Small devices adjustments */
+@media (max-width: 576px) {
+  .custom-navbar {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+  .logo-box {
+    padding: clamp(4px, 1vw, 6px);
+    border-width: clamp(4px, 0.7vw, 5px);
+  }
+}

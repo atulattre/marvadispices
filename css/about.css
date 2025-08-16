@@ -1,0 +1,132 @@
+/* Keep content from sliding under the fixed navbar */
+/* Keep content from sliding under the fixed navbar */
+body {
+  padding-top: 70px; /* Adjust based on navbar height */
+  background-color: #F5F5F5;
+}
+
+/* Navbar styling */
+.custom-navbar {
+  background: rgba(0,0,0,0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  height: 70px;
+  padding: .3rem 0;
+  z-index: 1000;
+}
+
+/* Brand container alignment */
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  margin-top: 2px;
+}
+
+/* Logo box: thick border, rounded, and responsive */
+.logo-box {
+  margin-top: 0.5px;
+  padding: clamp(3px, 1vw, 3px);       /* scales padding with screen size */
+  border: clamp(3px, 0.9vw, 3px) solid black;  /* thick but responsive border */
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.1);
+  display: inline-block;
+}
+
+/* Make the logo image responsive inside the box */
+.logo-box img {
+  display: block;
+  height: clamp(30px, 5.2vw, 55px);  /* scales up/down with screen */
+  width: auto;
+}
+
+/* Nav link styles */
+.navbar-nav .nav-link {
+  color: black !important;
+  font-weight: 500;
+}
+.navbar-nav .nav-link.active {
+  color: orange !important;
+  font-weight: 700;
+}
+
+/* Small devices adjustments */
+@media (max-width: 576px) {
+  .custom-navbar {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+  .logo-box {
+    padding: clamp(4px, 1vw, 6px);
+    border-width: clamp(4px, 0.7vw, 5px);
+  }
+}
+
+
+
+/* hero */
+.about-hero h1 { letter-spacing: .2px; }
+.about-hero p { max-width: 760px; margin: 0 auto; }
+
+/* soft card look */
+.card.soft{ border: 0; border-radius: 16px; }
+.card.soft .card-body{ padding: 1.25rem 1.25rem; }
+.card.shadow-sm{ border-radius: 16px; }
+
+/* stats */
+.stat .icon-wrap{
+  font-size: 1.6rem;
+  width: 48px; height: 48px;
+  display:grid; place-items:center;
+  border-radius: 50%;
+  background: rgba(252,105,0,0.12);
+  color: #fc6900;
+  margin: 0 auto .75rem;
+}
+
+/* team */
+.team-card{ border: 0; border-radius: 16px; text-align: center; }
+.team-avatar{
+  width: 88px; height: 88px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: #fff3e8;
+  box-shadow: 0 8px 24px rgba(0,0,0,.08);
+  margin: 0 auto 1rem;          /* centers the avatar */
+}
+.team-avatar img{
+  width: 100%; height: 100%; object-fit: cover;
+}
+
+/* when there are only two members, keep row centered & nice width */
+@media (min-width: 992px){
+  .about-page .row.justify-content-center > [class*="col-lg-4"]{
+    max-width: 360px;            /* optional: keeps cards from getting too wide */
+  }
+}
+
+/* spacing */
+.about-page section{ scroll-margin-top: 80px; }
+.guru-img {
+  max-width: 100px;   /* adjust width */
+  height: auto;       /* maintain aspect ratio */
+  border-radius: 12px; /* rounded corners */
+}
+
+.guru-image {
+  display: inline-block;
+}
+
+/* Image border */
+.guru-photo {
+  border: 3px solid black;      /* Black border around the image */
+  border-radius: 8px;           /* Slightly rounded corners */
+  padding: 4px;                 /* Space between image and border */
+}
+
+/* Title border */
+.guru-title {
+  border: 2px solid black;      /* Black border */
+  border-radius: 50px;          /* Fully rounded edges for pill shape */
+  padding: 6px 14px;            /* Space inside border */
+  background-color: #ffe4e9;    /* Light pink background */
+}
