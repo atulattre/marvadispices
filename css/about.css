@@ -1,17 +1,11 @@
-/* ===========================
-   GLOBAL / BASE
-   =========================== */
-
+/* Keep content from sliding under the fixed navbar */
 /* Keep content from sliding under the fixed navbar */
 body {
   padding-top: 70px; /* Adjust based on navbar height */
   background-color: #F5F5F5;
 }
 
-/* ===========================
-   NAVBAR
-   =========================== */
-
+/* Navbar styling */
 .custom-navbar {
   background: rgba(0,0,0,0.1);
   backdrop-filter: blur(10px);
@@ -21,31 +15,31 @@ body {
   z-index: 1000;
 }
 
-/* Align brand content nicely */
+/* Brand container alignment */
 .navbar-brand {
   display: flex;
   align-items: center;
   margin-top: 2px;
 }
 
-/* Logo box: responsive padding + border + radius */
+/* Logo box: thick border, rounded, and responsive */
 .logo-box {
   margin-top: 0.5px;
-  padding: clamp(3px, 1vw, 3px);                  /* responsive padding */
-  border: clamp(3px, 0.9vw, 3px) solid black;     /* responsive border thickness */
+  padding: clamp(3px, 1vw, 3px);       /* scales padding with screen size */
+  border: clamp(3px, 0.9vw, 3px) solid black;  /* thick but responsive border */
   border-radius: 10px;
   background-color: rgba(255, 255, 255, 0.1);
   display: inline-block;
 }
 
-/* Logo image scales with viewport, never stretched */
+/* Make the logo image responsive inside the box */
 .logo-box img {
   display: block;
-  height: clamp(30px, 5.2vw, 55px);
+  height: clamp(30px, 5.2vw, 55px);  /* scales up/down with screen */
   width: auto;
 }
 
-/* Nav links */
+/* Nav link styles */
 .navbar-nav .nav-link {
   color: black !important;
   font-weight: 500;
@@ -55,7 +49,7 @@ body {
   font-weight: 700;
 }
 
-/* Small devices: trim left/right padding from px-5 container */
+/* Small devices adjustments */
 @media (max-width: 576px) {
   .custom-navbar {
     padding-left: 1rem !important;
@@ -67,17 +61,84 @@ body {
   }
 }
 
-/* --- Mobile collapse fix: no overlap, no flash of old layout --- */
-@media (max-width: 991.98px) {
-  /* Prevent flash of unstyled collapse */
-  .navbar-collapse {
-    display: none;
+
+
+/* hero */
+.about-hero h1 { letter-spacing: .2px; }
+.about-hero p { max-width: 760px; margin: 0 auto; }
+
+/* soft card look */
+.card.soft{ border: 0; border-radius: 16px; }
+.card.soft .card-body{ padding: 1.25rem 1.25rem; }
+.card.shadow-sm{ border-radius: 16px; }
+
+/* stats */
+.stat .icon-wrap{
+  font-size: 1.6rem;
+  width: 48px; height: 48px;
+  display:grid; place-items:center;
+  border-radius: 50%;
+  background: rgba(252,105,0,0.12);
+  color: #fc6900;
+  margin: 0 auto .75rem;
+}
+
+/* team */
+.team-card{ border: 0; border-radius: 16px; text-align: center; }
+.team-avatar{
+  width: 88px; height: 88px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: #fff3e8;
+  box-shadow: 0 8px 24px rgba(0,0,0,.08);
+  margin: 0 auto 1rem;          /* centers the avatar */
+}
+.team-avatar img{
+  width: 100%; height: 100%; object-fit: cover;
+}
+
+/* when there are only two members, keep row centered & nice width */
+@media (min-width: 992px){
+  .about-page .row.justify-content-center > [class*="col-lg-4"]{
+    max-width: 360px;            /* optional: keeps cards from getting too wide */
   }
-  /* Styled dropdown panel when opened */
+}
+
+/* spacing */
+.about-page section{ scroll-margin-top: 80px; }
+.guru-img {
+  max-width: 100px;   /* adjust width */
+  height: auto;       /* maintain aspect ratio */
+  border-radius: 12px; /* rounded corners */
+}
+
+.guru-image {
+  display: inline-block;
+}
+
+/* Image border */
+.guru-photo {
+  border: 3px solid black;      /* Black border around the image */
+  border-radius: 8px;           /* Slightly rounded corners */
+  padding: 4px;                 /* Space between image and border */
+}
+
+/* Title border */
+.guru-title {
+  border: 2px solid black;      /* Black border */
+  border-radius: 50px;          /* Fully rounded edges for pill shape */
+  padding: 6px 14px;            /* Space inside border */
+  background-color: #ffe4e9;    /* Light pink background */
+}
+/* --- Fix mobile collapse overlapping/clipping --- */
+@media (max-width: 991.98px) {
+  /* Let the hero stop clipping children on small screens */
+  .hero-section { overflow: visible; }
+
+  /* Turn the opened collapse into a fixed dropdown panel */
   .navbar-collapse.collapse.show {
-    display: block !important;
     position: fixed;
-    top: 70px;                   /* same as navbar height */
+    top: 70px;                  /* height of your navbar */
     left: 0;
     right: 0;
     z-index: 1040;
@@ -85,92 +146,18 @@ body {
     backdrop-filter: blur(6px);
     -webkit-backdrop-filter: blur(6px);
     border-radius: 12px;
-    margin: 0 12px;              /* side gap */
+    margin: 0 12px;             /* side gap from screen edges */
     padding: 12px 16px;
     box-shadow: 0 12px 28px rgba(0,0,0,.16);
     max-height: calc(100vh - 90px);
-    overflow-y: auto;
+    overflow-y: auto;           /* scroll if lots of links */
   }
 
+  /* nicer spacing for links in the panel */
   .navbar-nav .nav-link {
     color: #000 !important;
     padding: .65rem 0;
     font-weight: 600;
   }
   .navbar-nav .nav-link.active { color: orange !important; }
-}
-
-/* ===========================
-   ABOUT PAGE CONTENT
-   =========================== */
-
-.about-hero h1 { letter-spacing: .2px; }
-.about-hero p { max-width: 760px; margin: 0 auto; }
-
-/* Soft cards */
-.card.soft { border: 0; border-radius: 16px; }
-.card.soft .card-body { padding: 1.25rem 1.25rem; }
-.card.shadow-sm { border-radius: 16px; }
-
-/* Stats icons (if used) */
-.stat .icon-wrap {
-  font-size: 1.6rem;
-  width: 48px; height: 48px;
-  display: grid; place-items: center;
-  border-radius: 50%;
-  background: rgba(252,105,0,0.12);
-  color: #fc6900;
-  margin: 0 auto .75rem;
-}
-
-/* Team section */
-.team-card { border: 0; border-radius: 16px; text-align: center; }
-.team-avatar {
-  width: 88px; height: 88px;
-  border-radius: 50%;
-  overflow: hidden;
-  background: #fff3e8;
-  box-shadow: 0 8px 24px rgba(0,0,0,.08);
-  margin: 0 auto 1rem;
-}
-.team-avatar img {
-  width: 100%; height: 100%; object-fit: cover;
-}
-
-/* Keep two-member row pleasantly narrow on large screens */
-@media (min-width: 992px) {
-  .about-page .row.justify-content-center > [class*="col-lg-4"] {
-    max-width: 360px;
-  }
-}
-
-/* Section anchor offset (if anchored scrolling is used) */
-.about-page section { scroll-margin-top: 80px; }
-
-/* Guru block (image + title) */
-.guru-img {
-  max-width: 100px;
-  height: auto;
-  border-radius: 12px;
-}
-.guru-image { display: inline-block; }
-
-.guru-photo {
-  border: 3px solid black;      /* image border */
-  border-radius: 8px;
-  padding: 4px;
-}
-.guru-title {
-  border: 2px solid black;      /* title pill border */
-  border-radius: 50px;
-  padding: 6px 14px;
-  background-color: #ffe4e9;    /* light pink */
-}
-
-/* ===========================
-   (If your hero is on this page)
-   Make sure mobile dropdown can overlap hero content
-   =========================== */
-@media (max-width: 991.98px) {
-  .hero-section { overflow: visible; }
 }
